@@ -36,3 +36,26 @@ class Price(models.Model):
 
     def __str__(self):
         return self.title
+
+class ContactSubmission(models.Model):
+    name = models.CharField(max_length=100)
+    contact = models.CharField(max_length=100, help_text="Phone number or Email address")
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    STATUS_CHOICES = [
+        ('new', 'Новая'),
+        ('in_progress', 'В процессе'),
+        ('processed', 'Обработана'),
+        ('completed', 'Завершена'),
+        ('cancelled', 'Отменена'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+
+    class Meta:
+        ordering = ['-submitted_at']
+        verbose_name = "Contact Submission"
+        verbose_name_plural = "Contact Submissions"
+
+    def __str__(self):
+        return f"Contact from {self.name} at {self.submitted_at.strftime('%Y-%m-%d %H:%M')}"

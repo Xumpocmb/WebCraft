@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal
 
 # Create your models here.
 
@@ -10,4 +11,28 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+class Price(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True) # This will now be the original price
+    recommended = models.BooleanField(default=False)
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    icon_svg = models.TextField(help_text="SVG code for the price icon", blank=True, null=True)
+
+    @property
+    def discounted_price(self):
+        if self.price is not None and self.discount_percentage is not None:
+            return self.price * (Decimal('1') - self.discount_percentage / Decimal('100'))
+        return None
+
+    @property
+    def display_price(self):
+        if self.discounted_price is not None:
+            return f"{self.discounted_price:.0f}"
+        elif self.price is not None:
+            return f"{self.price:.0f}"
+        return "Цена не указана"
+
+    def __str__(self):
         return self.title

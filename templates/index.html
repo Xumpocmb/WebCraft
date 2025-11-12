@@ -1,0 +1,502 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="{% static "img/favicon.svg" %}" />
+  <title>WebCraft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content="Meku" />
+  <meta name="description" content="Лендинг IT-услуг, созданный с помощью Meku" />
+  <meta name="author" content="Meku" />
+  <meta property="og:title" content="Лендинг IT-услуг" />
+  <meta property="og:description" content="Лендинг IT-услуг, созданный с помощью Meku" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://meku.dev/images/meku.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@meku_dev" />
+  <meta name="twitter:image" content="https://meku.dev/images/meku.png" />
+  <script type="module" src="{% static "js/main.js" %}"></script>
+  <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+
+<body>
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <div class="w-24 h-24 rounded-full border-2 border-logo overflow-hidden flex-shrink-0">
+            <img src="{% static "img/logo.jpg" %}" alt="Логотип WebCraft" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+          <button onclick="scrollToSection('home')"
+            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Главная</button>
+          <button onclick="scrollToSection('services')"
+            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Услуги</button>
+          <button onclick="scrollToSection('prices')"
+            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Цены</button>
+          <button onclick="scrollToSection('contacts')"
+            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
+        </nav>
+        <div class="hidden md:block">
+          <button onclick="scrollToSection('contacts')"
+            class="bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all font-semibold">Оставить
+            заявку</button>
+        </div>
+        <button onclick="toggleMenu()" class="md:hidden p-2" aria-label="Переключить меню">
+          <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
+      <div class="px-4 py-4 space-y-4">
+        <button onclick="scrollToSection('home')"
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Главная</button>
+        <button onclick="scrollToSection('services')"
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Услуги</button>
+        <button onclick="scrollToSection('prices')"
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Цены</button>
+        <button onclick="scrollToSection('contacts')"
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
+        <button onclick="scrollToSection('contacts')"
+          class="block bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl font-semibold w-full">Оставить
+          заявку</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="relative bg-gradient-to-r from-blue-50 to-purple-50 py-20 lg:py-32">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:items-stretch space-x-8 lg:space-x-12">
+      <div class="lg:w-1/2 text-center lg:text-left fade-in flex flex-col justify-center">
+        <h1 class="text-5xl lg:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+          <span class="text-accent-turquoise">IT</span>-решения для вашего бизнеса
+        </h1>
+        <p class="text-xl lg:text-2xl text-gray-600 mb-4">От лендингов до мобильных приложений и автоматизации процессов
+        </p>
+        <p class="text-lg text-gray-500 mb-8">Адаптированные для роста и эффективности</p>
+        <button onclick="scrollToSection('contacts')"
+          class="bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-10 py-5 rounded-lg shadow-lg hover:shadow-xl transition-all text-xl font-semibold mx-auto block cta-button">Заказать
+          консультацию</button>
+      </div>
+      <div class="lg:w-1/2 mt-10 lg:mt-0 fade-in flex justify-center items-center">
+        <video id="hero-video" class="w-full h-auto max-h-full object-cover rounded-lg shadow-lg" autoplay muted loop
+          playsinline aria-label="Иллюстрация технологий (видео)">
+          Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA-текстовый блок после слайдера -->
+  <section id="cta-online" class="py-20 bg-logo-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 fade-in">Готовы сделать первый шаг в
+        <span class="text-logo-purple">онлайн</span>?
+      </h2>
+      <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <p class="text-xl text-gray-700 mb-6 fade-in text-center font-semibold">Нужен сайт, который действительно
+          работает на ваш <span class="text-accent-turquoise">бизнес</span>?</p>
+        <p class="text-xl text-gray-700 leading-relaxed mb-4 fade-in">Если у вас ещё нет сайта — мы поможем <span
+            class="text-logo-purple font-semibold">начать с нуля</span>:
+          просто, понятно и с заботой о вашем деле. Если текущий сайт устарел, тормозит или не отражает ваш уровень —
+          самое время <span class="text-accent-turquoise font-semibold">обновиться</span>.</p>
+        <p class="text-xl text-gray-700 leading-relaxed mb-4 fade-in">Мы создаём сайты, которые не просто «есть», а
+          привлекают клиентов, повышают доверие и помогают продавать. Адаптивный дизайн, <span
+            class="text-logo-purple font-semibold">быстрая загрузка</span>,
+          <span class="text-accent-turquoise font-semibold">понятная структура</span> — всё, что нужно вашим
+          пользователям.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed mb-4 fade-in">Хотите <span
+            class="text-logo-purple font-semibold">лендинг</span>,
+          <span class="text-accent-turquoise font-semibold">корпоративный сайт</span> или <span
+            class="text-accent-turquoise font-semibold">интернет-магазин</span>? Мы предложим решение,
+          которое подойдёт именно вам — с учётом целей, аудитории и бюджета.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed fade-in"><span class="font-semibold text-gray-900">Расскажите,
+            что
+            вам нужно</span> — и мы сделаем сайт,
+          который будет работать на <span class="text-logo-purple font-semibold">результат</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-4 fade-in">
+        Наши <span class="text-accent-turquoise">Услуги</span>
+      </h2>
+      <p class="text-lg text-center text-gray-600 mb-12 fade-in">
+        Комплексные IT-решения для развития вашего бизнеса
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <!-- Иконка лендинга: макет веб-страницы -->
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <!-- окно страницы -->
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2" stroke-width="2"></rect>
+            <!-- верхняя панель -->
+            <line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line>
+            <!-- левый блочный элемент (геро-блок) -->
+            <rect x="6" y="12" width="6" height="6" rx="1" stroke-width="2"></rect>
+            <!-- строки контента справа -->
+            <line x1="14" y1="12" x2="20" y2="12" stroke-width="2"></line>
+            <line x1="14" y1="15" x2="20" y2="15" stroke-width="2"></line>
+            <line x1="14" y1="18" x2="20" y2="18" stroke-width="2"></line>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Лендинги</h3>
+          <p class="text-gray-600 mb-4 text-lg">Одностраничные сайты, предназначенные для презентации вашего бизнеса,
+            привлечения клиентов и сбора контактов. В отличие от многостраничных сайтов или интернет-магазинов, лендинги
+            фокусируются на одном предложении, чтобы максимизировать конверсию. Идеальны для запуска новых продуктов,
+            акций или услуг, где важно быстро заинтересовать посетителя и побудить к действию.</p>
+          <p class="text-sm text-accent-orange font-medium">Идеально для стартапов и промоакций.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Интернет-магазины</h3>
+          <p class="text-gray-600 mb-4 text-lg">Полнофункциональные платформы электронной коммерции с каталогом товаров,
+            корзиной, оплатой и управлением заказами. В отличие от простых лендингов, интернет-магазины позволяют
+            клиентам самостоятельно выбирать и покупать продукты, обеспечивая масштабируемость для растущего бизнеса.
+            Включают интеграции с платежными системами и аналитику продаж.</p>
+          <p class="text-sm text-accent-orange font-medium">Масштабируемы для растущего бизнеса.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Чат-боты</h3>
+          <p class="text-gray-600 mb-4 text-lg">ИИ-ассистенты для круглосуточной поддержки клиентов, генерации лидов и
+            автоматизированных ответов. В отличие от статичных форм обратной связи, чат-боты предоставляют мгновенные
+            ответы, снижая нагрузку на службу поддержки и улучшая пользовательский опыт. Полезны для обработки часто
+            задаваемых вопросов, сбора данных и увеличения вовлеченности.</p>
+          <p class="text-sm text-accent-orange font-medium">Улучшают взаимодействие с пользователями.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Парсеры</h3>
+          <p class="text-gray-600 mb-4 text-lg">Инструменты для сбора и анализа данных с веб-сайтов, помогающие в
+            исследованиях рынка и получении инсайтов. В отличие от ручного сбора информации, парсеры автоматизируют
+            процесс, обеспечивая точность и скорость. Идеальны для мониторинга конкурентов, цен или трендов, с
+            возможностью интеграции в бизнес-аналитику.</p>
+          <p class="text-sm text-accent-orange font-medium">Обеспечивают data-driven решения.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Мобильные приложения</h3>
+          <p class="text-gray-600 mb-4 text-lg">Кроссплатформенные приложения для iOS и Android, предлагающие удобство и
+            улучшенный пользовательский опыт. В отличие от веб-сайтов, мобильные приложения работают оффлайн, используют
+            push-уведомления и нативные функции устройства, что делает их незаменимыми для приложений вроде доставки или
+            фитнеса.</p>
+          <p class="text-sm text-accent-orange font-medium">Достигают клиентов в движении.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Автоматизация</h3>
+          <p class="text-gray-600 mb-4 text-lg">Оптимизация процессов для предпринимателей и бизнеса с интеграциями CRM
+            и автоматизацией рабочих потоков. В отличие от ручных задач, автоматизация снижает ошибки, экономит время и
+            повышает эффективность. Включает настройку систем для учета, маркетинга или логистики.</p>
+          <p class="text-sm text-accent-orange font-medium">Экономят время и снижают затраты.</p>
+        </div>
+        <div
+          class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-200 fade-in">
+          <!-- Иконка SEO: окно браузера + трендовая стрелка роста -->
+          <svg class="w-16 h-16 text-accent-turquoise mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+            <!-- окно -->
+            <rect x="3" y="4" width="18" height="14" rx="2" stroke-width="2"></rect>
+            <line x1="3" y1="8" x2="21" y2="8" stroke-width="2"></line>
+            <!-- стрелка роста внутри окна -->
+            <polyline points="7,15 11,11 14,13 18,9" stroke-width="2" fill="none"></polyline>
+            <polyline points="17,8 20,8 20,11" stroke-width="2" fill="none"></polyline>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">SEO-продвижение</h3>
+          <p class="text-gray-600 mb-4 text-lg">Увеличение видимости в поисковых системах, рост трафика и улучшение
+            позиций. В отличие от платной рекламы, SEO дает долгосрочные результаты через оптимизацию контента и
+            технических аспектов. Включает анализ ключевых слов, аудит сайта и мониторинг результатов.</p>
+          <p class="text-sm text-accent-orange font-medium">Доминируют в поисковых результатах.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices" class="py-20 bg-logo-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-4 fade-in">
+        Наши <span class="text-logo-purple">Цены</span>
+      </h2>
+      <p class="text-lg text-center text-gray-600 mb-12 fade-in">
+        Прозрачные цены за качественные IT-услуги
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <!-- Иконка лендинга: окно веб-страницы с блоками контента -->
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <!-- рамка окна -->
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2" stroke-width="2"></rect>
+            <!-- верхняя панель -->
+            <line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line>
+            <!-- левый геро-блок -->
+            <rect x="6" y="12" width="6" height="6" rx="1" stroke-width="2"></rect>
+            <!-- строки контента справа -->
+            <line x1="14" y1="12" x2="20" y2="12" stroke-width="2"></line>
+            <line x1="14" y1="15" x2="20" y2="15" stroke-width="2"></line>
+            <line x1="14" y1="18" x2="20" y2="18" stroke-width="2"></line>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Лендинг</h3>
+          <p class="text-gray-600 mb-6 text-lg">Пользовательский дизайн и разработка для презентации бизнеса.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">от 500 бел. руб.</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-accent-turquoise shadow-lg fade-in">
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Интернет-магазин</h3>
+          <p class="text-gray-600 mb-6 text-lg">Полное e-commerce решение с интеграцией платежей.</p>
+          <p class="text-sm text-accent-turquoise font-semibold mb-2">Рекомендуется</p>
+          <!-- Блок цены со скидкой 25% -->
+          <p class="text-sm font-medium text-gray-600 mb-1">Скидка <span class="text-red-600 font-bold">25%</span></p>
+          <p class="text-2xl font-bold text-red-600 line-through">2000 - 5000 $</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">1500 - 3750 $</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Чат-бот</h3>
+          <p class="text-gray-600 mb-6 text-lg">ИИ-ассистент для взаимодействия с клиентами.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">1000 - 3000 $</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Парсер</h3>
+          <p class="text-gray-600 mb-6 text-lg">Инструмент для сбора и анализа данных.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">800 - 2500 $</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Мобильное приложение</h3>
+          <p class="text-gray-600 mb-6 text-lg">Кроссплатформенная разработка приложений.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">5000 - 15000 $</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Автоматизация</h3>
+          <p class="text-gray-600 mb-6 text-lg">Оптимизация процессов и интеграции.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">1500 - 4000 $</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 border-gray-200 fade-in">
+          <!-- Иконка SEO (малый): окно браузера + стрелка роста -->
+          <svg class="w-12 h-12 text-accent-turquoise mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="14" rx="2" stroke-width="2"></rect>
+            <line x1="3" y1="8" x2="21" y2="8" stroke-width="2"></line>
+            <polyline points="7,15 11,11 14,13 18,9" stroke-width="2" fill="none"></polyline>
+            <polyline points="17,8 20,8 20,11" stroke-width="2" fill="none"></polyline>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">SEO-продвижение</h3>
+          <p class="text-gray-600 mb-6 text-lg">Услуги по оптимизации поисковых систем.</p>
+          <p class="price text-3xl font-extrabold text-accent-orange">300 - 1000 $/мес</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advantages" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-4 fade-in">
+        Почему выбирают <span class="text-accent-turquoise">Нас</span>
+      </h2>
+      <p class="text-lg text-center text-gray-600 mb-12 fade-in">
+        Проверенная репутация и стремление к совершенству
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow fade-in">
+          <svg class="w-16 h-16 text-accent-orange mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Опыт</h3>
+          <p class="text-gray-600 mb-4">Годы экспертизы в предоставлении лучших IT-решений.</p>
+          <p class="text-2xl font-extrabold text-accent-turquoise">5+ лет</p>
+        </div>
+        <div class="text-center bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow fade-in">
+          <svg class="w-16 h-16 text-accent-orange mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Скорость</h3>
+          <p class="text-gray-600 mb-4">Быстрые сроки выполнения без ущерба качеству.</p>
+          <p class="text-2xl font-extrabold text-accent-turquoise">20+ проектов</p>
+        </div>
+        <div class="text-center bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow fade-in">
+          <svg class="w-16 h-16 text-accent-orange mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+            </path>
+          </svg>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Индивидуальный подход</h3>
+          <p class="text-gray-600 mb-4">Решения, адаптированные под ваши уникальные нужды.</p>
+          <p class="text-2xl font-extrabold text-accent-turquoise">10+ клиентов</p>
+        </div>
+        <div class="text-center bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow fade-in">
+          <svg class="w-16 h-16 text-accent-orange mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+            </path>
+          </svg>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Поддержка</h3>
+          <p class="text-gray-600 mb-4">Текущая поддержка и обслуживание всех услуг.</p>
+          <p class="text-2xl font-extrabold text-accent-turquoise">Круглосуточно</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts" class="py-20 bg-logo-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12 fade-in">
+        Свяжитесь с <span class="text-logo-purple">нами</span>
+      </h2>
+      <form id="contact-form" class="bg-white p-8 rounded-lg shadow-sm fade-in">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 mb-2">Имя</label>
+          <input id="name" name="name"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            type="text" required />
+          <p id="name-error" class="text-red-600 mt-1 hidden">Имя обязательно</p>
+        </div>
+        <div class="mb-4">
+          <label for="contact" class="block text-gray-700 mb-2">Телефон или Email</label>
+          <input id="contact" name="contact"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            type="text" required />
+          <p id="contact-error" class="text-red-600 mt-1 hidden">Телефон или email обязателен</p>
+        </div>
+        <div class="mb-6">
+          <label for="message" class="block text-gray-700 mb-2">Сообщение</label>
+          <textarea id="message" name="message"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            rows="4" required></textarea>
+          <p id="message-error" class="text-red-600 mt-1 hidden">Сообщение обязательно</p>
+        </div>
+        <div class="text-center">
+          <button type="submit"
+            class="bg-gradient-to-r from-logo-aqua to-logo-purple text-white rounded-lg transition-all font-semibold cta-button cta-sm">Отправить
+            заявку</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-900 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row justify-center gap-8 lg:gap-24">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Контактная информация</h3>
+          <p><span class="text-logo-purple">Email:</span> <a href="mailto:webcraftdigital6@gmail.com"
+              class="text-black no-underline hover:no-underline hover:text-accent-turquoise transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400/50"
+              aria-label="Написать на webcraftdigital6@gmail.com">webcraftdigital6@gmail.com</a></p>
+          <p><span class="text-accent-turquoise">Телефон:</span> <a href="tel:+375255013727"
+              class="text-black no-underline hover:no-underline hover:text-logo-purple transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400/50"
+              aria-label="Позвонить по номеру +375 (25) 501-37-27">+375 (25) 501-37-27</a></p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Социальные сети</h3>
+          <div class="flex items-center space-x-4">
+            <a href="https://www.instagram.com/webcraft.digital/" class="hover:text-blue-400 transition-colors"
+              aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="img"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="#C13584" />
+                <path
+                  d="M24 14.1622C27.2041 14.1622 27.5837 14.1744 28.849 14.2321C30.019 14.2855 30.6544 14.481 31.0773 14.6453C31.6374 14.863 32.0371 15.123 32.457 15.5429C32.877 15.9629 33.137 16.3626 33.3547 16.9227C33.519 17.3456 33.7145 17.981 33.7679 19.1509C33.8256 20.4163 33.8378 20.7958 33.8378 23.9999C33.8378 27.2041 33.8256 27.5836 33.7679 28.849C33.7145 30.019 33.519 30.6543 33.3547 31.0772C33.137 31.6373 32.877 32.0371 32.4571 32.457C32.0371 32.8769 31.6374 33.1369 31.0773 33.3546C30.6544 33.519 30.019 33.7144 28.849 33.7678C27.5839 33.8255 27.2044 33.8378 24 33.8378C20.7956 33.8378 20.4162 33.8255 19.151 33.7678C17.981 33.7144 17.3456 33.519 16.9227 33.3546C16.3626 33.1369 15.9629 32.8769 15.543 32.457C15.1231 32.0371 14.863 31.6373 14.6453 31.0772C14.481 30.6543 14.2855 30.019 14.2321 28.849C14.1744 27.5836 14.1622 27.2041 14.1622 23.9999C14.1622 20.7958 14.1744 20.4163 14.2321 19.1509C14.2855 17.981 14.481 17.3456 14.6453 16.9227C14.863 16.3626 15.123 15.9629 15.543 15.543C15.9629 15.123 16.3626 14.863 16.9227 14.6453C17.3456 14.481 17.981 14.2855 19.151 14.2321C20.4163 14.1744 20.7959 14.1622 24 14.1622ZM24 12C20.741 12 20.3323 12.0138 19.0524 12.0722C17.7752 12.1305 16.9028 12.3333 16.1395 12.63C15.3504 12.9366 14.6812 13.3469 14.0141 14.0141C13.3469 14.6812 12.9366 15.3504 12.63 16.1395C12.3333 16.9028 12.1305 17.7751 12.0722 19.0524C12.0138 20.3323 12 20.741 12 23.9999C12 27.259 12.0138 27.6676 12.0722 28.9475C12.1305 30.2248 12.3333 31.0971 12.63 31.8604C12.9366 32.6495 13.3469 33.3187 14.0141 33.9859C14.6812 34.653 15.3504 35.0633 16.1395 35.3699C16.9028 35.6666 17.7752 35.8694 19.0524 35.9277C20.3323 35.9861 20.741 35.9999 24 35.9999C27.259 35.9999 27.6677 35.9861 28.9476 35.9277C30.2248 35.8694 31.0972 35.6666 31.8605 35.3699C32.6496 35.0633 33.3188 34.653 33.9859 33.9859C34.653 33.3187 35.0634 32.6495 35.37 31.8604C35.6667 31.0971 35.8695 30.2248 35.9278 28.9475C35.9862 27.6676 36 27.259 36 23.9999C36 20.741 35.9862 20.3323 35.9278 19.0524C35.8695 17.7751 35.6667 16.9028 35.37 16.1395C35.0634 15.3504 34.653 14.6812 33.9859 14.0141C33.3188 13.3469 32.6496 12.9366 31.8605 12.63C31.0972 12.3333 30.2248 12.1305 28.9476 12.0722C27.6677 12.0138 27.259 12 24 12Z"
+                  fill="white" />
+                <path
+                  d="M24.0059 17.8433C20.6026 17.8433 17.8438 20.6021 17.8438 24.0054C17.8438 27.4087 20.6026 30.1675 24.0059 30.1675C27.4092 30.1675 30.1681 27.4087 30.1681 24.0054C30.1681 20.6021 27.4092 17.8433 24.0059 17.8433ZM24.0059 28.0054C21.7968 28.0054 20.0059 26.2145 20.0059 24.0054C20.0059 21.7963 21.7968 20.0054 24.0059 20.0054C26.2151 20.0054 28.0059 21.7963 28.0059 24.0054C28.0059 26.2145 26.2151 28.0054 24.0059 28.0054Z"
+                  fill="white" />
+                <path
+                  d="M31.8507 17.5963C31.8507 18.3915 31.206 19.0363 30.4107 19.0363C29.6154 19.0363 28.9707 18.3915 28.9707 17.5963C28.9707 16.801 29.6154 16.1562 30.4107 16.1562C31.206 16.1562 31.8507 16.801 31.8507 17.5963Z"
+                  fill="white" />
+              </svg>
+            </a>
+            <a href="#" class="hover:text-blue-400 transition-colors" aria-label="Telegram">
+              <svg width="24" height="24" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="img">
+                <defs>
+                  <linearGradient id="tgGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#5EB3FF" />
+                    <stop offset="100%" stop-color="#229ED9" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#tgGradient)"
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+        <p>&copy; 2025 WebCraft IT-решения. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

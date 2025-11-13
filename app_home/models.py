@@ -1,7 +1,6 @@
-from django.db import models
 from decimal import Decimal
+from django.db import models
 
-# Create your models here.
 
 class Service(models.Model):
     title = models.CharField(max_length=200)
@@ -10,7 +9,7 @@ class Service(models.Model):
     tagline = models.CharField(max_length=200, blank=True, null=True, help_text="Short tagline for the service (e.g., 'Идеально для стартапов')")
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 class Price(models.Model):
     title = models.CharField(max_length=200)
@@ -35,7 +34,7 @@ class Price(models.Model):
         return "Цена не указана"
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 class ContactSubmission(models.Model):
     name = models.CharField(max_length=100)
@@ -59,3 +58,16 @@ class ContactSubmission(models.Model):
 
     def __str__(self):
         return f"Contact from {self.name} at {self.submitted_at.strftime('%Y-%m-%d %H:%M')}"
+
+class ContactInfo(models.Model):
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=20)
+    instagram_link = models.URLField(max_length=200, blank=True, null=True)
+    telegram_link = models.URLField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Contact Information"
+        verbose_name_plural = "Contact Information"
+
+    def __str__(self):
+        return "Contact Information"

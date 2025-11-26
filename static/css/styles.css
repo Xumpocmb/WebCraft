@@ -73,8 +73,8 @@ body {
     --color-box-shadow-lg: 0 10px 15px #0000001a;
     --color-hover-shadow-xl: 0 20px 25px #00000026;
     --color-cta-button-shadow: inset 0 1px #ffffff40, 0 8px 18px #0000001f;
-    --color-cta-button-hover-shadow: inset 0 1px #ffffff40, 0 12px 24px #00000029, 0 0 0 2px #11182780;
-    --color-cta-button-active-shadow: inset 0 1px #ffffff40, 0 6px 12px #00000029, 0 0 0 2px #11182780;
+    --color-cta-button-hover-shadow: inset 0 1px #ffffff40, 0 12px 24px #0000004d, 0 0 0 2px #11182780;
+    --color-cta-button-active-shadow: inset 0 1px #ffffff40, 0 6px 12px #0000004d, 0 0 0 2px #11182780;
 }
 
 * {
@@ -250,7 +250,17 @@ html {
     color: var(--gray-700);
     box-shadow: var(--color-nav-link-shadow);
     transition: color .15s ease, border-color .15s ease, box-shadow .2s ease, transform .15s ease, background .15s ease;
-    white-space: nowrap
+    white-space: nowrap;
+}
+
+.nav-link svg {
+    stroke: var(--color-text);
+    width: 20px;
+    height: 20px;
+}
+
+body.dark-mode .nav-link svg {
+    stroke: var(--dark-text-color);
 }
 
 .nav-link:hover {
@@ -305,7 +315,7 @@ button:focus {
 }
 
 .w-24 {
-    width: 6rem
+    width: 8rem
 }
 
 .h-full {
@@ -329,7 +339,7 @@ button:focus {
 }
 
 .h-24 {
-    height: 6rem
+    height: 4rem
 }
 
 .h-64 {
@@ -772,40 +782,7 @@ body.dark-mode .bg-gradient-to-r {
     transform: scale(1.05)
 }
 
-@media(min-width:640px) {
-    .sm\:px-6 {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem
-    }
-
-    .sm\:w-auto {
-        width: auto
-    }
-}
-
-@media(min-width:768px) {
-    .md\:flex {
-        display: flex
-    }
-
-    .md\:block {
-        display: block
-    }
-
-    .md\:hidden {
-        display: none !important
-    }
-
-    .md\:grid-cols-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
-    }
-
-    .md\:grid-cols-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr))
-    }
-}
-
-@media(min-width:1024px) {
+@media(min-width:992px) {
     .lg\:px-8 {
         padding-left: 2rem;
         padding-right: 2rem
@@ -959,4 +936,14 @@ header.bg-white.shadow-sm {
     border-radius: inherit;
     pointer-events: none;
     background: linear-gradient(to bottom, #ffffff59, #fff0)
+}
+
+.mobile-only-burger {
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .mobile-only-burger {
+        display: none;
+    }
 }

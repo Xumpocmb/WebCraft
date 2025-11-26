@@ -25,14 +25,16 @@
 
 <body>
   <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
       <div class="flex justify-between items-center py-4">
         <div class="flex items-center">
           <div class="w-24 h-24 rounded-full border-2 border-logo overflow-hidden flex-shrink-0">
-            <img src="{% static "img/logo.jpg" %}" alt="Логотип WebCraft" class="w-full h-full object-cover" />
+            <img src="{% static "img/logo.png" %}" alt="Логотип WebCraft" class="w-full h-full object-cover" />
           </div>
         </div>
-        <nav class="hidden md:flex space-x-8">
+
+        <!-- Desktop Navigation -->
+        <nav class="lg:flex items-center space-x-8 hidden">
           <button onclick="scrollToSection('home')"
             class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Главная</button>
           <button onclick="scrollToSection('services')"
@@ -41,15 +43,20 @@
             class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Цены</button>
           <button onclick="scrollToSection('contacts')"
             class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
-            <button id="theme-toggle"
-            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Темная тема</button>
-        </nav>
-        <div class="hidden md:block">
+          <button id="theme-toggle" class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">
+            <svg id="theme-toggle-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Иконка луны для темной темы -->
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+          </button>
           <button onclick="scrollToSection('contacts')"
             class="bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all font-semibold">Оставить
             заявку</button>
-        </div>
-        <button onclick="toggleMenu()" class="md:hidden p-2" aria-label="Переключить меню">
+        </nav>
+
+        <!-- Mobile Burger Menu Button -->
+        <button id="burger-button" onclick="toggleMenu()" class="mobile-only-burger p-2" aria-label="Переключить меню">
           <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -59,7 +66,9 @@
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="bg-white border-t hidden">
       <div class="px-4 py-4 space-y-4">
         <button onclick="scrollToSection('home')"
           class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Главная</button>
@@ -70,7 +79,13 @@
         <button onclick="scrollToSection('contacts')"
           class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
         <button id="theme-toggle-mobile"
-          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Темная тема</button>
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">
+          <svg id="theme-toggle-mobile-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Иконка луны для темной темы -->
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
         <button onclick="scrollToSection('contacts')"
           class="block bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl font-semibold w-full">Оставить
           заявку</button>

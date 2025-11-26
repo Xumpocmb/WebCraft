@@ -50,7 +50,7 @@ def home(request):
                     if response.status_code != 200:
                         print(f"Error sending Telegram message: {response.status_code} - {response.text}")
             except Exception as e:
-                print(f"Error sending Telegram message: {e}")
+                return redirect("home")
             messages.success(request, 'Ваша заявка успешно отправлена!')
             return redirect('home') # Redirect to the home page (or a success page)
         else:

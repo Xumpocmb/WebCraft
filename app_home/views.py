@@ -3,7 +3,7 @@ from django.contrib import messages # For displaying messages to the user
 import requests  # For sending Telegram messages
 from django.core.mail import send_mail # For sending emails
 from django.conf import settings
-from .models import Service, Price
+from .models import Service, Price, SiteSettings
 from .forms import ContactForm # Import the ContactForm
 
 # Create your views here.
@@ -12,7 +12,15 @@ def home(request):
     services = Service.objects.all()
     prices = Price.objects.all()
 
+    # Load site settings to check if contact submissions are allowed
+    site_settings = SiteSettings.load()
+    
     if request.method == 'POST':
+        if not site_settings.allow_contact_submissions:
+            # If contact submissions are disabled, redirect to home with an error message
+            messages.error(request, 'Отправка заявок временно приостановлена.')
+            return redirect('home')
+        
         form = ContactForm(request.POST)
         if form.is_valid():
             contact_submission = form.save()
@@ -62,5 +70,6 @@ def home(request):
         'services': services,
         'prices': prices,
         'form': form, # Pass the form to the context
+        'allow_contact_submissions': site_settings.allow_contact_submissions, # Pass the setting to the template
     }
     return render(request, 'index.html', context)

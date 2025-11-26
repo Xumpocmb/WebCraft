@@ -4,6 +4,7 @@
     <h2 class="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12 fade-in">
       Готовы улучшить <span class="text-logo-purple">присутствие</span> в интернете?
     </h2>
+    {% if allow_contact_submissions %}
     <form method="post" class="bg-white p-8 rounded-lg shadow-sm fade-in">
       {% csrf_token %}
       <div class="mb-4">
@@ -38,5 +39,10 @@
           class="bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all font-semibold cta-button cta-sm">Отправить заявку</button>
       </div>
     </form>
+    {% else %}
+    <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+      <p class="text-gray-700 text-lg">В настоящее время отправка заявок временно приостановлена. Пожалуйста, попробуйте позже.</p>
+    </div>
+    {% endif %}
   </div>
 </section>

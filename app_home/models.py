@@ -71,3 +71,24 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return "Contact Information"
+
+class SiteSettings(models.Model):
+    allow_contact_submissions = models.BooleanField(
+        default=True,
+        verbose_name="Разрешить отправку заявок",
+        help_text="Если отключено, форма заявки будет недоступна для пользователей"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Настройка сайта"
+        verbose_name_plural = "Настройки сайта"
+
+    def __str__(self):
+        return f"Настройки сайта: {'Заявки разрешены' if self.allow_contact_submissions else 'Заявки запрещены'}"
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj

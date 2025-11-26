@@ -6,25 +6,62 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="{% static "img/favicon.svg" %}" />
-  <title>WebCraft</title>
+  <title>WebCraft - Создание сайтов и IT-услуги под ключ | Разработка, SEO, поддержка</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content="Meku" />
-  <meta name="description" content="Лендинг IT-услуг, созданный с помощью Meku" />
-  <meta name="author" content="Meku" />
-  <meta property="og:title" content="Лендинг IT-услуг" />
-  <meta property="og:description" content="Лендинг IT-услуг, созданный с помощью Meku" />
+  <meta name="description" content="WebCraft - профессиональная разработка сайтов, SEO оптимизация, IT-услуги под ключ. Создаем эффективные лендинги, корпоративные сайты и интернет-магазины." />
+  <meta name="keywords" content="создание сайтов, разработка сайтов, SEO оптимизация, IT-услуги, веб-разработка, лендинги, интернет-магазины, корпоративные сайты, веб-студия" />
+  <meta name="author" content="WebCraft" />
+  <meta property="og:title" content="WebCraft - Создание сайтов и IT-услуги под ключ" />
+  <meta property="og:description" content="WebCraft - профессиональная разработка сайтов, SEO оптимизация, IT-услуги под ключ. Создаем эффективные лендинги, корпоративные сайты и интернет-магазины." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://meku.dev/images/meku.png" />
+  <meta property="og:url" content="https://webcraft24.space" />
+  <meta property="og:image" content="{% static "img/logo.png" %}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@meku_dev" />
-  <meta name="twitter:image" content="https://meku.dev/images/meku.png" />
+  <meta name="twitter:site" content="@webcraft" />
+  <meta name="twitter:image" content="{% static "img/logo.png" %}" />
+  <link rel="canonical" href="https://webcraft24.space" />
   <script type="module" src="{% static "js/main.js" %}"></script>
   <script type="module" src="{% static "js/theme-toggle.js" %}"></script>
   <script type="module" src="{% static "js/alert.js" %}"></script>
   <link rel="stylesheet" href="{% static "css/styles.css" %}">
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WebCraft",
+    "description": "Профессиональная разработка сайтов, SEO оптимизация и IT-услуги под ключ",
+    "url": "https://webcraft24.space",
+    "logo": "{% static "img/logo.png" %}",
+    "image": "{% static "img/logo.png" %}",
+    "telephone": "+7 (495) 123-45-67",
+    "email": "info@webcraft24.space",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Тверская, 1",
+      "addressLocality": "Москва",
+      "postalCode": "125009",
+      "addressCountry": "RU"
+    },
+    "areaServed": "Весь мир",
+    "serviceType": ["Веб-разработка", "SEO оптимизация", "IT-консалтинг"],
+    "founder": {
+      "@type": "Person",
+      "name": "Команда WebCraft"
+    },
+    "sameAs": [
+      "https://www.facebook.com/webcraft",
+      "https://www.instagram.com/webcraft",
+      "https://t.me/webcraft"
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <!-- Добавляем ARIA-атрибуты и улучшаем семантику -->
+  <div role="banner">
   <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
       <div class="flex justify-between items-center py-4">

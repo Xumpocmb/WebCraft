@@ -20,6 +20,7 @@
   <meta name="twitter:image" content="https://meku.dev/images/meku.png" />
   <script type="module" src="{% static "js/main.js" %}"></script>
   <script type="module" src="{% static "js/theme-toggle.js" %}"></script>
+  <script type="module" src="{% static "js/alert.js" %}"></script>
   <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 
@@ -93,12 +94,63 @@
     </div>
   </header>
 
+    <!-- Notification element -->
+    {% include 'notifications.html' %}
+
   <main>
     {% block content %}
     {% endblock %}
   </main>
 
   {% include 'footer.html' %}
+
+ <script>
+   // Check for success message after form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if there's a success message in the page context
+      const successMessage = "{% if messages %}{% for message in messages %}{% if message.tags == 'success' %}{{ message }}{% endif %}{% endfor %}{% endif %}";
+      
+      // If form was submitted successfully, show notification
+      if (successMessage.trim() !== '') {
+        showNotification(successMessage, 'success');
+      }
+   });
+
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      const notificationMessage = document.getElementById('notification-message');
+      
+      // Set message content
+      notificationMessage.textContent = message;
+      
+      // Set styling based on type
+      const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+      notification.querySelector('.notification-content').className = `notification-content ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg`;
+      
+      // Show notification with animation
+      notification.classList.remove('opacity-0', 'pointer-events-none');
+      notification.classList.add('opacity-100', 'translate-x-0');
+      
+      // Add the 'show' class for slide-in animation
+      notification.classList.add('show');
+      
+      // Hide notification after 5 seconds
+      setTimeout(() => {
+        hideNotification(notification);
+      }, 5000);
+   }
+
+    function hideNotification(notification) {
+      notification.classList.remove('show');
+      notification.classList.remove('opacity-100');
+      notification.classList.add('opacity-0');
+      
+      // After fade out, add pointer-events-none to prevent interaction
+      setTimeout(() => {
+        notification.classList.add('pointer-events-none');
+      }, 300);
+    }
+  </script>
 
 </body>
 </html>

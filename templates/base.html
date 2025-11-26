@@ -19,6 +19,7 @@
   <meta name="twitter:site" content="@meku_dev" />
   <meta name="twitter:image" content="https://meku.dev/images/meku.png" />
   <script type="module" src="{% static "js/main.js" %}"></script>
+  <script type="module" src="{% static "js/theme-toggle.js" %}"></script>
   <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 
@@ -40,6 +41,8 @@
             class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Цены</button>
           <button onclick="scrollToSection('contacts')"
             class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
+            <button id="theme-toggle"
+            class="nav-link text-gray-700 hover:text-accent-turquoise transition-colors">Темная тема</button>
         </nav>
         <div class="hidden md:block">
           <button onclick="scrollToSection('contacts')"
@@ -66,6 +69,8 @@
           class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Цены</button>
         <button onclick="scrollToSection('contacts')"
           class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Контакты</button>
+        <button id="theme-toggle-mobile"
+          class="nav-link w-full justify-start text-gray-700 hover:text-accent-turquoise transition-colors">Темная тема</button>
         <button onclick="scrollToSection('contacts')"
           class="block bg-gradient-to-r from-logo-aqua to-logo-purple text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl font-semibold w-full">Оставить
           заявку</button>

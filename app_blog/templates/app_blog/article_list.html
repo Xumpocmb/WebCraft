@@ -11,7 +11,7 @@
             {% for article in articles %}
                 <div class="article-card">
                     <h3><a href="{% url 'app_blog:article_detail' article.pk %}">{{ article.title }}</a></h3>
-                    <p>{{ article.content|truncatewords:30 }}</p>
+                    <p>{{ article.content|truncatewords:30|safe }}</p>
                     <div class="article-footer">
                         <span>👍 {{ article.likes }}</span>
                         <span>{{ article.created_at|date:"d.m.Y" }}</span>

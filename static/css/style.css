@@ -397,6 +397,16 @@ section:nth-child(even) {
     margin: 0;
 }
 
+/* Footer */
+footer {
+    background-color: #282c34;
+    color: #f0f0f0;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Responsive Design */
 @media (max-width: 992px) {

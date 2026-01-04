@@ -13,22 +13,24 @@
     <header>
         <nav>
             <div class="container">
-                <a href="{% url 'index' %}" class="logo">WebCraft Studio</a>
-                <div class="language-switcher">
-                    <form action="{% url 'set_language' %}" method="post">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ request.path }}">
-                        <select name="language" onchange="this.form.submit()">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                    {{ language.name_local }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
+                <div class="header-main-group">
+                    <a href="{% url 'index' %}" class="logo">WebCraft Studio</a>
+                    <div class="language-switcher">
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                        {{ language.name_local }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </div>
                 </div>
                 <div class="burger-menu">
                     <span></span>

@@ -64,6 +64,12 @@ nav .container {
     align-items: center;
 }
 
+.header-main-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 .logo {
     font-size: 1.8em;
     font-weight: 700;
@@ -83,10 +89,6 @@ nav .container {
 .nav-links li a {
     font-weight: 600;
     font-size: 1.1em;
-}
-
-.language-switcher {
-    margin-left: 25px;
 }
 
 .language-switcher select {
@@ -414,10 +416,22 @@ footer {
         padding: 15px;
     }
 
+    nav .container {
+        gap: 20px;
+    }
+
+    .header-main-group {
+        flex-grow: 1;
+    }
+
     .burger-menu {
         display: flex;
     }
-
+    
+    .language-switcher {
+        margin-left: auto;
+    }
+    
     .nav-links {
         display: none;
         position: absolute;
@@ -428,6 +442,7 @@ footer {
         flex-direction: column;
         align-items: center;
         padding: 20px 0;
+        z-index: 99;
     }
 
     .nav-links.active {
@@ -436,11 +451,6 @@ footer {
 
     .nav-links li {
         margin: 15px 0;
-    }
-    
-    .language-switcher {
-        margin-top: 15px;
-        margin-left: 0;
     }
 
     .hero h1 {

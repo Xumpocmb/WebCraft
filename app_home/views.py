@@ -13,22 +13,36 @@ logger = logging.getLogger(__name__)
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
-@csrf_exempt
+from django.shortcuts import render, redirect
+
+def about_page(request):
+    return render(request, 'app_home/about_page.html')
+
+def services_page(request):
+    services = Service.objects.all().order_by('id')
+    return render(request, 'app_home/services_page.html', {'services': services})
+
+def why_us_page(request):
+    return render(request, 'app_home/why_us_page.html')
+
+def contact_page(request):
+    return render(request, 'app_home/contact_page.html')
+
 def index(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         phone_number = request.POST.get('phone_number')
-        message = request.POST.get('message')
+        message_text = request.POST.get('message')
 
-        if not all([name, phone_number, message]):
+        if not all([name, phone_number, message_text]):
             messages.error(request, 'Пожалуйста, заполните все поля формы.')
-            return JsonResponse({'status': 'error', 'message': 'Please fill in all fields.'})
+            return redirect(request.META.get('HTTP_REFERER', 'index'))
 
         # Save to database
         contact_request = ContactRequest.objects.create(
             name=name,
             phone_number=phone_number,
-            message=message
+            message=message_text
         )
 
         # Send to Telegram
@@ -38,7 +52,7 @@ def index(request):
                 f"Новая заявка с сайта:\n"
                 f"Имя: {name}\n"
                 f"Телефон: {phone_number}\n"
-                f"Сообщение: {message}"
+                f"Сообщение: {message_text}"
             )
             telegram_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
             payload = {
@@ -50,15 +64,15 @@ def index(request):
                 response.raise_for_status()  # Raise an exception for HTTP errors
                 logger.info("Telegram message sent successfully.")
                 messages.success(request, 'Ваша заявка успешно отправлена!')
-                return JsonResponse({'status': 'success', 'message': 'Your request has been sent successfully!'})
             except requests.exceptions.RequestException as e:
                 logger.error(f"Error sending to Telegram: {e}, response: {response.text}")
                 messages.error(request, 'Произошла ошибка при отправке заявки в Telegram. Пожалуйста, попробуйте еще раз.')
-                return JsonResponse({'status': 'error', 'message': 'An error occurred while sending to Telegram. Please try again.'})
         else:
             logger.warning("Telegram configuration is incomplete. TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is missing.")
             messages.warning(request, 'Конфигурация Telegram не завершена. Заявка сохранена, но не отправлена в Telegram.')
-            return JsonResponse({'status': 'warning', 'message': 'Telegram configuration is incomplete. Request saved, but not sent to Telegram.'})
+
+        return redirect(request.META.get('HTTP_REFERER', 'index'))
+
 
     services = Service.objects.all().order_by('id')
     reviews = Review.objects.all()

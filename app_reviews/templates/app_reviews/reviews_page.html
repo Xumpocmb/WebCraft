@@ -1,0 +1,13 @@
+{% extends 'app_home/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Отзывы - WebCraft Studio" %}{% endblock %}
+
+{% block content %}
+<section id="reviews" class="reviews-section">
+    <div class="container">
+        <h2>{% trans "Отзывы наших клиентов" %}</h2>
+        {% include 'app_reviews/includes/reviews.html' %}
+    </div>
+</section>
+{% endblock %}

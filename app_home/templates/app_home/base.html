@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "WebCraft Studio" %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="{% url 'index' %}" class="logo">WebCraft Studio</a>
+                <ul>
+                    <li><a href="{% url 'about_page' %}">{% trans "О нас" %}</a></li>
+                    <li><a href="{% url 'services_page' %}">{% trans "Услуги" %}</a></li>
+                    <li><a href="{% url 'why_us_page' %}">{% trans "Почему мы?" %}</a></li>
+                    <li><a href="{% url 'app_reviews:reviews_page' %}">{% trans "Отзывы" %}</a></li>
+                    <li><a href="{% url 'contact_page' %}">{% trans "Контакты" %}</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                        <select name="language" onchange="this.form.submit()">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        {% block hero %}{% endblock %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {% now "Y" %} WebCraft Studio. {% trans "Все права защищены." %}</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

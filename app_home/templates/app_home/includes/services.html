@@ -1,0 +1,18 @@
+{% load i18n %}
+<section id="services" class="services-section">
+    <div class="container">
+        <h2>{% trans "Наши услуги" %}</h2>
+        <div class="services-grid">
+            {% for service in services %}
+                <div class="service-card">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description }}</p>
+                    <span class="price">{{ service.price|floatformat:2 }} ₽</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="{% url 'contact_page' %}" class="btn btn-primary">{% trans "Обсудить проект" %}</a>
+        </div>
+    </div>
+</section>

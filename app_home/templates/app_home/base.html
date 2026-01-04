@@ -14,13 +14,6 @@
         <nav>
             <div class="container">
                 <a href="{% url 'index' %}" class="logo">WebCraft Studio</a>
-                <ul>
-                    <li><a href="{% url 'about_page' %}">{% trans "О нас" %}</a></li>
-                    <li><a href="{% url 'services_page' %}">{% trans "Услуги" %}</a></li>
-                    <li><a href="{% url 'why_us_page' %}">{% trans "Почему мы?" %}</a></li>
-                    <li><a href="{% url 'app_reviews:reviews_page' %}">{% trans "Отзывы" %}</a></li>
-                    <li><a href="{% url 'contact_page' %}">{% trans "Контакты" %}</a></li>
-                </ul>
                 <div class="language-switcher">
                     <form action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
@@ -37,6 +30,18 @@
                         </select>
                     </form>
                 </div>
+                <div class="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{% url 'about_page' %}">{% trans "О нас" %}</a></li>
+                    <li><a href="{% url 'services_page' %}">{% trans "Услуги" %}</a></li>
+                    <li><a href="{% url 'why_us_page' %}">{% trans "Почему мы?" %}</a></li>
+                    <li><a href="{% url 'app_reviews:reviews_page' %}">{% trans "Отзывы" %}</a></li>
+                    <li><a href="{% url 'contact_page' %}">{% trans "Контакты" %}</a></li>
+                </ul>
             </div>
         </nav>
         {% block hero %}{% endblock %}

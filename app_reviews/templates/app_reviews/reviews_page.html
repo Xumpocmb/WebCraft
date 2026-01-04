@@ -10,4 +10,14 @@
         {% include 'app_reviews/includes/reviews.html' %}
     </div>
 </section>
+<section id="leave-review" class="leave-review-section">
+    <div class="container">
+        <h2>{% trans "Оставить отзыв" %}</h2>
+        <form method="post" class="review-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">{% trans "Отправить отзыв" %}</button>
+        </form>
+    </div>
+</section>
 {% endblock %}

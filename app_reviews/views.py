@@ -1,9 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Review
+from .forms import ReviewForm
+from django.contrib import messages
 
 def reviews_page(request):
     reviews = Review.objects.all()
-    return render(request, 'app_reviews/reviews_page.html', {'reviews': reviews})
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Ваш отзыв был успешно добавлен!')
+            return redirect('app_reviews:reviews_page')
+    else:
+        form = ReviewForm()
+    return render(request, 'app_reviews/reviews_page.html', {'reviews': reviews, 'form': form})
 
 def like_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)

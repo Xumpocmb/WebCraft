@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Distributions
+dist/
+build/
+*.egg
+
+# OS-specific stuff
+.DS_Store
+.Trashes
+Thumbs.db
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Django stuff
+*.log
+*.pot
+*.mo
+*.db
+local_settings.py
+media/
+staticfiles/
+
+# Node.js
+node_modules/
+
+# dotenv files
+.env
+
+# Исключаем файлы миграций
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Исключаем базу данных SQLite
+db.sqlite3
+
+
+/fixtures/
+/static/admin/
+/static/img/
+/static/video/
+/secrets
+*/fixtures

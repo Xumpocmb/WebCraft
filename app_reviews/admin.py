@@ -21,7 +21,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ("author", "rating", "verified", "likes", "created_at")
     list_filter = ("rating", "verified", "created_at")
     search_fields = ("author", "comment")
-    readonly_fields = ("likes", "created_at")
+    readonly_fields = ("created_at",)
     inlines = [ReplyInline]
 
 

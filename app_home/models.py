@@ -6,6 +6,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.IntegerField(verbose_name="Цена")
+    active = models.BooleanField(default=True, verbose_name="Активна")
 
     class Meta:
         verbose_name = "Услуга"

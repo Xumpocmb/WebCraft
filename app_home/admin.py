@@ -2,30 +2,31 @@ from django.contrib import admin
 from modeltranslation.admin import TabbedTranslationAdmin
 from .models import Service, ContactRequest, Comment
 
+
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 1
-    readonly_fields = ('author', 'created_at')
+    readonly_fields = ("author", "created_at")
+
+
 @admin.register(Service)
 class ServiceAdmin(TabbedTranslationAdmin):
-    list_display = ('name', 'price')
-    search_fields = ('name',)
+    list_display = ("name", "price", "active")
+    list_filter = ("active",)
+    search_fields = ("name",)
+
 
 @admin.register(ContactRequest)
 class ContactRequestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone_number', 'status', 'created_at')
-    list_filter = ('status', 'created_at')
-    search_fields = ('name', 'phone_number', 'message')
-    list_editable = ('status',)
-    readonly_fields = ('phone_number', 'message', 'created_at')
+    list_display = ("name", "phone_number", "status", "created_at")
+    list_filter = ("status", "created_at")
+    search_fields = ("name", "phone_number", "message")
+    list_editable = ("status",)
+    readonly_fields = ("phone_number", "message", "created_at")
     inlines = [CommentInline]
     fieldsets = (
-        (None, {
-            'fields': ('name', 'phone_number', 'message', 'created_at')
-        }),
-        ('Management', {
-            'fields': ('status',)
-        }),
+        (None, {"fields": ("name", "phone_number", "message", "created_at")}),
+        ("Management", {"fields": ("status",)}),
     )
 
     def save_formset(self, request, form, formset, change):

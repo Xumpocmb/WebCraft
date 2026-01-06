@@ -66,8 +66,8 @@ def index(request):
 
         return redirect(request.META.get("HTTP_REFERER", "index"))
 
-    services = Service.objects.all().order_by("id")
-    reviews = Review.objects.all()
+    services = Service.objects.filter(active=True).order_by("id")
+    reviews = Review.objects.filter(verified=True)
     context = {
         "services": services,
         "reviews": reviews,

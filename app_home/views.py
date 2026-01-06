@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from .models import Service, ContactRequest
+from .models import Service, ContactRequest, SiteSettings
 from app_reviews.models import Review
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,13 @@ def why_us_page(request):
 
 
 def contact_page(request):
+    # Check if contact requests are enabled
+    settings = SiteSettings.load()
     if request.method == "POST":
+        if not settings.accept_requests:
+            messages.error(request, "Прием заявок временно приостановлен. Пожалуйста, попробуйте позже.")
+            return redirect(request.META.get("HTTP_REFERER", "index"))
+
         name = request.POST.get("name")
         phone_number = request.POST.get("phone_number")
         message_text = request.POST.get("message")
@@ -61,11 +67,19 @@ def contact_page(request):
             messages.warning(request, "Конфигурация Telegram не завершена. Заявка сохранена, но не отправлена в Telegram.")
 
         return redirect(request.META.get("HTTP_REFERER", "index"))
-    return render(request, "app_home/contact_page.html")
+
+    context = {"accept_requests": settings.accept_requests}
+    return render(request, "app_home/contact_page.html", context)
 
 
 def index(request):
+    # Check if contact requests are enabled
+    settings = SiteSettings.load()
     if request.method == "POST":
+        if not settings.accept_requests:
+            messages.error(request, "Прием заявок временно приостановлен. Пожалуйста, попробуйте позже.")
+            return redirect(request.META.get("HTTP_REFERER", "index"))
+
         name = request.POST.get("name")
         phone_number = request.POST.get("phone_number")
         message_text = request.POST.get("message")
@@ -99,10 +113,7 @@ def index(request):
 
     services = Service.objects.filter(active=True).order_by("id")
     reviews = Review.objects.filter(verified=True)
-    context = {
-        "services": services,
-        "reviews": reviews,
-    }
+    context = {"services": services, "reviews": reviews, "accept_requests": settings.accept_requests}
     return render(request, "app_home/index.html", context)
 
 

@@ -3,30 +3,37 @@
     <div class="container">
         <h2>{% trans "Свяжитесь с нами" %}</h2>
         <p class="text-center">{% trans "Оставьте свои данные, и мы свяжемся с вами в ближайшее время!" %}</p>
-        <form id="contact-form" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">{% trans "Ваше имя:" %}</label>
-                <input type="text" id="name" name="name" required>
+        
+        {% if accept_requests|default:True %}
+            <form id="contact-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">{% trans "Ваше имя:" %}</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">{% trans "Номер телефона:" %}</label>
+                    <input type="tel" id="phone" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">{% trans "Ваше сообщение:" %}</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="ym(106154478, 'reachGoal', 'заявка'); return true;">{% trans "Отправить заявку" %}</button>
+                <div id="form-messages" class="form-messages">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </form>
+        {% else %}
+            <div class="text-center">
+                <p class="alert alert-warning">{% trans "Прием заявок временно приостановлен. Пожалуйста, попробуйте позже." %}</p>
             </div>
-            <div class="form-group">
-                <label for="phone">{% trans "Номер телефона:" %}</label>
-                <input type="tel" id="phone" name="phone_number" required>
-            </div>
-            <div class="form-group">
-                <label for="message">{% trans "Ваше сообщение:" %}</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" onclick="ym(106154478, 'reachGoal', 'заявка'); return true;">{% trans "Отправить заявку" %}</button>
-            <div id="form-messages" class="form-messages">
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </div>
-        </form>
+        {% endif %}
     </div>
 </section>

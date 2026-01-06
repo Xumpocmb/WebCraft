@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TabbedTranslationAdmin
-from .models import Service, ContactRequest, Comment
+from .models import Service, ContactRequest, Comment, SiteSettings
 
 
 class CommentInline(admin.TabularInline):
@@ -36,3 +36,19 @@ class ContactRequestAdmin(admin.ModelAdmin):
                 instance.author = request.user
             instance.save()
         formset.save_m2m()
+
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    list_display = ("accept_requests", "updated_at")
+    fieldsets = (("Настройки формы заявок", {"fields": ("accept_requests",), "description": "Включите или отключите прием заявок с формы на сайте"}),)
+
+    def has_add_permission(self, request):
+        # Only allow one instance of SiteSettings
+        if SiteSettings.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion of the SiteSettings instance
+        return False

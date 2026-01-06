@@ -6,7 +6,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.IntegerField(verbose_name="Цена")
-    active = models.BooleanField(default=True, verbose_name="Активна")
+    active = models.BooleanField(default=True)  # Added for filtering
 
     class Meta:
         verbose_name = "Услуга"
@@ -56,3 +56,20 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Комментарий от {self.author.username} к заявке №{self.contact_request.id}"
+
+
+class SiteSettings(models.Model):
+    accept_requests = models.BooleanField(default=True, verbose_name="Прием заявок")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
+    class Meta:
+        verbose_name = "Настройка сайта"
+        verbose_name_plural = "Настройки сайта"
+
+    def __str__(self):
+        return f"Настройки сайта (Прием заявок: {'Да' if self.accept_requests else 'Нет'})"
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj

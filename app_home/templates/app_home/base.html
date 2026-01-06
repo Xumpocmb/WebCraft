@@ -88,7 +88,32 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 - {% now "Y" %} WebCraft Studio. {% trans "Все права защищены." %}</p>
+            <div class="footer-columns">
+                <div class="footer-nav-column">
+                    <h3>{% trans "Навигация" %}</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="{% url 'about_page' %}">{% trans "О нас" %}</a></li>
+                        <li><a href="{% url 'services_page' %}">{% trans "Услуги" %}</a></li>
+                        <li><a href="{% url 'why_us_page' %}">{% trans "Почему мы?" %}</a></li>
+                        <li><a href="{% url 'app_reviews:reviews_page' %}">{% trans "Отзывы" %}</a></li>
+                        <li><a href="{% url 'app_blog:article_list' %}">{% trans "Блог" %}</a></li>
+                        <li><a href="{% url 'contact_page' %}">{% trans "Контакты" %}</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-column">
+                    <h3>{% trans "Контакты" %}</h3>
+                    <div class="footer-contacts">
+                        <p>{% trans "Телефон:" %} +7-XXX-XXX-XX-XX</p>
+                        <p>
+                            <a href="https://instagram.com/webcraftstudio" class="social-link" target="_blank">Instagram</a> |
+                            <a href="https://t.me/webcraftstudio" class="social-link" target="_blank">Telegram</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 - {% now "Y" %} WebCraft Studio. {% trans "Все права защищены." %}</p>
+            </div>
         </div>
     </footer>
 

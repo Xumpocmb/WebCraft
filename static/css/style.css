@@ -672,6 +672,28 @@ footer {
     color: #a4f2ff;
 }
 
+.social-links-header {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.social-link-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.social-link-header:hover {
+    color: #61dafb;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
